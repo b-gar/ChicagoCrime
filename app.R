@@ -179,6 +179,8 @@ server <- function(input, output) {
   m$primary_type <- str_to_title(m$primary_type)
   m$primary_type <- as.factor(m$primary_type)
   m$description <- str_to_title(m$description)
+  m$Lab <- paste('<strong>', m$primary_type, '</strong>', m$description, sep = "<br/>") %>% 
+    lapply(htmltools::HTML)
   
   # Top 10 Crime Types for Color Palette
   temp <- m %>% group_by(primary_type) %>% tally() %>% arrange(desc(n)) %>% top_n(10, n) %>% droplevels()
@@ -208,18 +210,19 @@ server <- function(input, output) {
   setView(lng = -87.654231, lat = 41.877562, zoom = 11) %>%
   setMaxBounds(lng1 = -87.455032, lat1 = 41.6, lng2 = -87.955673, lat2 = 42.040927) %>%
   addPolygons(data = community, color = "#0e80c2", fillColor = "white", label = ~Bold, 
-              highlightOptions = highlightOptions(color = "red", opacity = 1, weight = 8, stroke = 8)) %>%
-  addCircleMarkers(data = data1, group = data1$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description))%>% 
-  addCircleMarkers(data = data2, group = data2$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addCircleMarkers(data = data3, group = data3$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addCircleMarkers(data = data4, group = data4$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addCircleMarkers(data = data5, group = data5$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addCircleMarkers(data = data6, group = data6$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addCircleMarkers(data = data7, group = data7$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addCircleMarkers(data = data8, group = data8$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addCircleMarkers(data = data9, group = data9$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addCircleMarkers(data = data10, group = data10$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~paste0(primary_type, ": ", description)) %>%
-  addPulseMarkers(data = homicide, group = "Homicide", label = ~paste0(primary_type, ": ", description), icon = makePulseIcon(iconSize = 8)) %>%
+              highlightOptions = highlightOptions(color = "red", opacity = 1, weight = 8, stroke = 8), 
+              labelOptions = labelOptions(textsize = "13px")) %>%
+  addCircleMarkers(data = data1, group = data1$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data2, group = data2$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data3, group = data3$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data4, group = data4$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data5, group = data5$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data6, group = data6$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data7, group = data7$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data8, group = data8$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data9, group = data9$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addCircleMarkers(data = data10, group = data10$primary_type[1], radius = 2, color = ~pal(primary_type), label = ~Lab)%>% 
+  addPulseMarkers(data = homicide, group = "Homicide", label = ~Lab, icon = makePulseIcon(iconSize = 8)) %>%
   addLayersControl(overlayGroups = c("Homicide", data1$primary_type[1], data2$primary_type[1], data3$primary_type[1], data4$primary_type[1], 
                                      data5$primary_type[1], data6$primary_type[1], data7$primary_type[1], data8$primary_type[1], 
                                      data9$primary_type[1], data10$primary_type[1]), 
