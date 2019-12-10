@@ -35,7 +35,7 @@ monthStart <- function(x) {
 ct <- Sys.time()
 month(ct) <- month(Sys.time())-3
 ct<- as.Date(ct)
-token <- "kd1bR4uxjwRFe9APTALPuNOKZ"
+token <- "token here"
 
 # CSV of the Community Areas
 comAreas <- read.csv("CommAreas.csv")
