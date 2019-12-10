@@ -18,7 +18,7 @@ library(geojsonio)
 
 # Function For Starting Date in UI (Outputs 1st of Month or Previous Month)
 monthStart <- function(x) {
-  if (day(as.POSIXlt(x)) < 9) {
+  if (day(as.POSIXlt(x)) < 15) {
     x <- as.POSIXlt(x)
     month(x) <- month(x)-1
     x$mday <- 1
@@ -35,7 +35,7 @@ monthStart <- function(x) {
 ct <- Sys.time()
 month(ct) <- month(Sys.time())-3
 ct<- as.Date(ct)
-token <- "token here"
+token <- "kd1bR4uxjwRFe9APTALPuNOKZ"
 
 # CSV of the Community Areas
 comAreas <- read.csv("CommAreas.csv")
