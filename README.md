@@ -1,4 +1,4 @@
-# ChicagoCrime
+# Chicago Crime Shiny App
 
 ## This is a project intending to visualize Chicago's crime by pulling data from the City of Chicago API - Powered by Socrata
 
