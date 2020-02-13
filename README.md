@@ -10,3 +10,6 @@
 #### Dataset: https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2/data
 #### Column Information: https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2
 #### API Information: https://dev.socrata.com/foundry/data.cityofchicago.org/ijzp-q8t2
+##### *Note: API Key was input into a csv file called token.csv in this format:
+![Test](/API CSV Example.png)
+Format: ![Alt Text](url)
