@@ -31,10 +31,12 @@ monthStart <- function(x) {
   }
 }
 
-# Date Function Used for Leaflet Last 3 Months of Data
+# Date Used for Leaflet Last 3 Months of Data
 ct <- Sys.time()
 month(ct) <- month(Sys.time())-3
 ct<- as.Date(ct)
+
+# Get API Key
 token <- read.csv("token.csv", stringsAsFactors = FALSE)
 token <- token$token[1]
 
