@@ -100,13 +100,12 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
             tabItem(tabName = "tab1",
                     ## ROW 1 ##
                     fluidRow(
-                      box(12, height = "1000px", width = "100%",
+                      column(12,
                         h3(strong("City of Chicago API Powered by Socrata")),
-                        h5("Visualizing Homicide + the Top 10 Crime Types for the Past Three Months"),
-                        leafletOutput("map", width = "100%", height = "1000px")
+                        h5("Visualizing Homicide + the Top 10 Crime Types for the Past Three Months")
                       )
-                    )
-                    
+                    ),
+                    leafletOutput("map", height = "80vh")
             ),
             ## TAB 2 - Graph/Table ##
             tabItem(tabName = "tab2",
