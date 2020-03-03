@@ -64,9 +64,6 @@ CSS <- "#loading-content {
   text-align: center;
   color: #FFFFFF;
 }
-
-#map {
-  height: calc(100vh - 120px) !important;}
         
 .shiny-output-error { visibility: hidden; }
 .shiny-output-error:before {
@@ -105,7 +102,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                     fillPage(
                           fluidRow(
                             column(width = 12, div(
-                              style = "padding: 0px; margin: -15px",
+                              style = "padding: 0px; margin: -15px; height: calc(100vh - 120px);",
                               h3(strong("City of Chicago API Powered by Socrata"), style = "padding-left:15px;"),
                               h5("Visualizing Homicide + the Top 10 Crime Types for the Past Three Months", style = "padding-left:15px;"),
                               leafletOutput("map", width = "100%", height = "100%")
@@ -116,6 +113,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
             ),
             ## TAB 2 - Graph/Table ##
             tabItem(tabName = "tab2",
+              
               ## ROW 1 ##
               fluidRow(
                 column(5,
