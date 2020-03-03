@@ -120,15 +120,15 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
               
               ## ROW 1 ##
               fluidRow(
-                column(width = 5,
+                column(width = 4,
                   h3(style = "margin-top: 0px;", strong("City of Chicago API Powered by Socrata")),
-                  img(src = 'chicago.jpg', height = "10%", width = "85%")
+                  img(src = 'chicago.jpg', height = "300", width = "100%")
                 ),
                 br(),
                 br(),
                 br(),
                 br(),
-                box(width = 4, status = "primary", align = 'center', height = 300,
+                box(width = 4, status = "primary", align = 'center',
                   selectInput("type", "Crime Type", c("Battery", "Assault", "Robbery", "Narcotics", "Theft", 
                               "Deceptive Practice", "Burglary", "Arson", "Other Offense", "Crim Sexual Assault", 
                               "Motor Vehicle Theft","Offense Involving Children", "Weapons Violation", 
@@ -143,11 +143,11 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                   actionButton("load", "Fetch Records", icon = icon("download"), style = 'height:60px; color: white; 
                                border-radius: 12px; background-color: #0e80c2; font-size: 16px;')
                 ),
-                column(width = 3,
-                  h4(icon("info-circle"), "Set the parameters and click", em("Fetch Records"), "to render a time series graph and table of the crime"),
+                column(width = 4,
+                  h4("Set the parameters and click", em("Fetch Records"), "to render a time series graph and table of the crime"),
                   br(),
                   br(),
-                  h5(em("Note:"), "Requesting more data will increase load times")
+                  h4(em("Note:"), "Requesting more data will increase load times")
                 )
               ),
               
@@ -155,7 +155,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
               fluidRow(
                 column(12,
                   # Output the Graph that Shows a Loading Symbol Before Rendered
-                  withSpinner(plotlyOutput("graph", height = "275px"), type = 5, color = "#0e80c2", size = 2),
+                  withSpinner(plotlyOutput("graph", height = "250px"), type = 5, color = "#0e80c2", size = 2),
                   
                   # Output the Table that Shows a Loading Symbol Before Rendered
                   withSpinner(dataTableOutput("table"), type = 5, color = "#0e80c2", size = 2)
