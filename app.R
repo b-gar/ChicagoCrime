@@ -56,13 +56,14 @@ community$Bold <- paste0('<strong>', community$community, '</strong>') %>%
 CSS <- "#loading-content {
   position: absolute;
   background: #000000;
-  opacity: 0.9;
+  opacity: 1;
   z-index: 100;
   left: 0;
   right: 0;
   height: 100%;
   text-align: center;
   color: #FFFFFF;
+  margin-top: 40px;
 }
 
 #map {
@@ -108,7 +109,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                               style = "padding: 0px; margin: -15px;",
                               h3(strong("City of Chicago API Powered by Socrata"), style = "padding-left:15px; margin-top: 0px;"),
                               h5("Visualizing Homicide + the Top 10 Crime Types for the Past Three Months", style = "padding-left:15px;"),
-                              leafletOutput("map", width = "100%", height = "100%")
+                              withSpinner(leafletOutput("map", width = "100%", height = "100%"), type = 5, color = "#0e80c2", size = 2)
                             ))
                           )
                     )
@@ -205,7 +206,6 @@ server <- function(input, output) {
   
   # Page 1 Graph
   output$map <- renderLeaflet({
-  withProgress(message = "Loading...",
                
   # Plot Leaflet Map
   leaflet(options = leafletOptions(minZoom = 10, preferCanvas = TRUE)) %>% 
@@ -245,7 +245,7 @@ server <- function(input, output) {
   addEasyButton(easyButton(icon="fa-crosshairs", title="Locate Me", onClick=JS("function(btn, map){ map.locate({setView: true}); }"))) %>%
   addLegend(pal = pal, values = temp$primary_type, title = "Crime Type", position = "bottomright") %>%
   addControl("<B>Map Filters Above</B>", position='topright')
-  )
+
 })
  
   ## Page 2 Graph & Table ##
