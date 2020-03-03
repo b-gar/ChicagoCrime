@@ -101,6 +101,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
       ),
         div(id = "app-content",
           tabItems(
+            
             ## TAB 1 - Map ##
             tabItem(tabName = "tab1",
                     fillPage(
@@ -109,22 +110,22 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                               style = "padding: 0px; margin: -15px;",
                               h3(strong("City of Chicago API Powered by Socrata"), style = "padding-left:15px; margin-top: 0px;"),
                               h5("Visualizing Homicide + the Top 10 Crime Types for the Past Three Months", style = "padding-left:15px;"),
-                              withSpinner(leafletOutput("map", width = "100%", height = "100%"), type = 5, color = "#000000", size = 2)
+                              withSpinner(leafletOutput("map", width = "100%", height = "100%"), type = 1, color = "#000000", size = 3)
                             ))
                           )
                     )
         
             ),
+            
             ## TAB 2 - Graph/Table ##
             tabItem(tabName = "tab2",
                     fillPage(
-                      ## ROW 1 ##
+                      
+                      ## ROW 1 - Image/Inputs/Text ##
                       fluidRow(
                         column(width = 4,
-                               img(src = 'chicago.jpg', height = "20%", width = "100%")
+                               img(src = 'chicago.jpg', height = "auto", width = "100%")
                         ),
-                        br(),
-                        br(),
                         box(width = 4, status = "primary", align = 'center',
                             selectInput("type", "Crime Type", c("Battery", "Assault", "Robbery", "Narcotics", "Theft", 
                                                                 "Deceptive Practice", "Burglary", "Arson", "Other Offense", "Crim Sexual Assault", 
@@ -137,8 +138,8 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                             dateRangeInput("date", "Date", start = monthStart(Sys.Date()), end = Sys.Date()-8, min = "2014-01-01",
                                            max = Sys.Date()-8, separator = " to "),
                             h5("* Data trails by 8 days"),
-                            actionButton("load", "Fetch Records", icon = icon("download"), style = 'height:60px; color: white; 
-                               border-radius: 12px; background-color: #0e80c2; font-size: 16px;')
+                            actionButton("load", "Fetch Records", icon = icon("download"), style = 'padding: 8px; color: white; 
+                               border-radius: 12px; background-color: #0e80c2;')
                         ),
                         column(width = 3,
                                h4("Set the parameters and click", em("Fetch Records"), "to render a time series graph and table of the crime"),
@@ -148,17 +149,17 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                         )
                       ),
                       br(),
-                      br(),
-                      ## ROW 2 ##
+                      
+                      ## ROW 2 - Graph/Table ##
                       fluidRow(
                         tabBox(width = 12,
                           tabPanel("Time Series",
                                    # Output the Graph that Shows a Loading Symbol Before Rendered
-                                   withSpinner(plotlyOutput("graph"), type = 5, color = "#000000", size = 1)
+                                   withSpinner(plotlyOutput("graph", height = "36vh"), type = 1, color = "#000000", size = 2)
                           ),
                           tabPanel("Table",
                                   # Output the Table that Shows a Loading Symbol Before Rendered
-                                  withSpinner(dataTableOutput("table"), type = 5, color = "#000000", size = 1)
+                                  withSpinner(dataTableOutput("table"), type = 1, color = "#000000", size = 2)
                           )
                         )
                       )
