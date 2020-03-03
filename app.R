@@ -66,7 +66,7 @@ CSS <- "#loading-content {
 }
 
 #map {
-height: calc(100vh - 120px) !important;} 
+height: calc(100vh - 110px) !important;} 
 
 .shiny-output-error { visibility: hidden; }
 .shiny-output-error:before {
@@ -106,7 +106,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                           fluidRow(
                             column(width = 12, div(
                               style = "padding: 0px; margin: -15px;",
-                              h3(strong("City of Chicago API Powered by Socrata"), style = "padding-left:15px;"),
+                              h3(strong("City of Chicago API Powered by Socrata"), style = "padding-left:15px; margin-top: 0px;"),
                               h5("Visualizing Homicide + the Top 10 Crime Types for the Past Three Months", style = "padding-left:15px;"),
                               leafletOutput("map", width = "100%", height = "100%")
                             ))
@@ -119,17 +119,15 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
               
               ## ROW 1 ##
               fluidRow(
-                column(5, style = "padding: 0px 15px 0px 15px; margin: 0px 0px;",
-                  h3(strong("City of Chicago API Powered by Socrata")),
-                  img(src = 'chicago.jpg', height = "20%", width = "70%")
+                column(width = 5,
+                  h3(style = "margin-top: 0px;", strong("City of Chicago API Powered by Socrata")),
+                  img(src = 'chicago.jpg', height = "10%", width = "85%")
                 ),
                 br(),
                 br(),
                 br(),
                 br(),
-                br(),
-                br(),
-                box(width = 4, status = "primary", align = 'center',
+                box(width = 4, status = "primary", align = 'center', height = 300,
                   selectInput("type", "Crime Type", c("Battery", "Assault", "Robbery", "Narcotics", "Theft", 
                               "Deceptive Practice", "Burglary", "Arson", "Other Offense", "Crim Sexual Assault", 
                               "Motor Vehicle Theft","Offense Involving Children", "Weapons Violation", 
@@ -144,18 +142,19 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                   actionButton("load", "Fetch Records", icon = icon("download"), style = 'height:60px; color: white; 
                                border-radius: 12px; background-color: #0e80c2; font-size: 16px;')
                 ),
-                column(3,
+                column(width = 3,
                   h4(icon("info-circle"), "Set the parameters and click", em("Fetch Records"), "to render a time series graph and table of the crime"),
                   br(),
                   br(),
                   h5(em("Note:"), "Requesting more data will increase load times")
                 )
               ),
+              
               ## ROW 2 ##
               fluidRow(
                 column(12,
                   # Output the Graph that Shows a Loading Symbol Before Rendered
-                  withSpinner(plotlyOutput("graph", height = "250px"), type = 5, color = "#0e80c2", size = 2),
+                  withSpinner(plotlyOutput("graph", height = "275px"), type = 5, color = "#0e80c2", size = 2),
                   
                   # Output the Table that Shows a Loading Symbol Before Rendered
                   withSpinner(dataTableOutput("table"), type = 5, color = "#0e80c2", size = 2)
