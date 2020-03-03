@@ -122,7 +122,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
               fluidRow(
                 column(width = 4,
                   h3(style = "margin-top: 0px;", strong("City of Chicago API Powered by Socrata")),
-                  img(src = 'chicago.jpg', height = "300", width = "100%")
+                  img(src = 'chicago.jpg', height = "20%", width = "100%")
                 ),
                 br(),
                 br(),
