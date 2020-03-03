@@ -64,7 +64,10 @@ CSS <- "#loading-content {
   text-align: center;
   color: #FFFFFF;
 }
-        
+
+#map {
+height: calc(100vh - 120px) !important;} 
+
 .shiny-output-error { visibility: hidden; }
 .shiny-output-error:before {
   visibility: visible;
@@ -102,7 +105,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                     fillPage(
                           fluidRow(
                             column(width = 12, div(
-                              style = "padding: 0px; margin: -15px; height: calc(100vh - 120px);",
+                              style = "padding: 0px; margin: -15px;",
                               h3(strong("City of Chicago API Powered by Socrata"), style = "padding-left:15px;"),
                               h5("Visualizing Homicide + the Top 10 Crime Types for the Past Three Months", style = "padding-left:15px;"),
                               leafletOutput("map", width = "100%", height = "100%")
@@ -116,9 +119,9 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
               
               ## ROW 1 ##
               fluidRow(
-                column(5,
+                column(5, style = "padding: 0px 15px 0px 15px; margin: 0px 0px;",
                   h3(strong("City of Chicago API Powered by Socrata")),
-                  img(src = 'chicago.jpg', height = "30%", width = "80%")
+                  img(src = 'chicago.jpg', height = "20%", width = "70%")
                 ),
                 br(),
                 br(),
@@ -152,7 +155,7 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
               fluidRow(
                 column(12,
                   # Output the Graph that Shows a Loading Symbol Before Rendered
-                  withSpinner(plotlyOutput("graph"), type = 5, color = "#0e80c2", size = 2),
+                  withSpinner(plotlyOutput("graph", height = "250px"), type = 5, color = "#0e80c2", size = 2),
                   
                   # Output the Table that Shows a Loading Symbol Before Rendered
                   withSpinner(dataTableOutput("table"), type = 5, color = "#0e80c2", size = 2)
