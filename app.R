@@ -63,11 +63,11 @@ CSS <- "#loading-content {
   height: 100%;
   text-align: center;
   color: #FFFFFF;
-  margin-top: 40px;
+  margin-top: -15px;
 }
 
 #map {
-height: calc(100vh - 110px) !important;} 
+height: calc(100vh - 50px) !important;} 
 
 .shiny-output-error { visibility: hidden; }
 .shiny-output-error:before {
@@ -108,8 +108,6 @@ ui <- dashboardPage(skin = "black", title = "Chicago Crime",
                           fluidRow(
                             column(width = 12, div(
                               style = "padding: 0px; margin: -15px;",
-                              h3(strong("City of Chicago API Powered by Socrata"), style = "padding-left:15px; margin-top: 0px;"),
-                              h5("Visualizing Homicide + the Top 10 Crime Types for the Past Three Months", style = "padding-left:15px;"),
                               withSpinner(leafletOutput("map", width = "100%", height = "100%"), type = 1, color = "#000000", size = 3)
                             ))
                           )
@@ -241,13 +239,13 @@ server <- function(input, output) {
                    labelOptions = labelOptions(style = list("border" = "4px solid gray"), textsize = "12px")) %>% 
   addPulseMarkers(data = homicide, group = "Homicide", label = ~Lab, icon = makePulseIcon(iconSize = 8), 
                   labelOptions = labelOptions(style = list("border" = "4px solid gray"), textsize = "12px")) %>%
-  addLayersControl(overlayGroups = c("Homicide", data1$primary_type[1], data2$primary_type[1], data3$primary_type[1], data4$primary_type[1], 
+  addLayersControl(position = "bottomleft", overlayGroups = c("Homicide", data1$primary_type[1], data2$primary_type[1], data3$primary_type[1], data4$primary_type[1], 
                                      data5$primary_type[1], data6$primary_type[1], data7$primary_type[1], data8$primary_type[1], 
                                      data9$primary_type[1], data10$primary_type[1]), 
                    baseGroups = c("Dark Theme", "Light Theme")) %>%
   addEasyButton(easyButton(icon="fa-crosshairs", title="Locate Me", onClick=JS("function(btn, map){ map.locate({setView: true}); }"))) %>%
   addLegend(pal = pal, values = temp$primary_type, title = "Crime Type", position = "bottomright") %>%
-  addControl("<B>Map Filters Above</B>", position='topright')
+  addControl("<H3>City of Chicago API Powered by Socrata</H3></br><H4>Homicide + the Top 10 Crime Types the Past 3 Months </H4>", position='topright')
 
 })
  
