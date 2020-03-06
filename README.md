@@ -11,4 +11,4 @@
 #### Column Information: https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2
 #### API Information: https://dev.socrata.com/foundry/data.cityofchicago.org/ijzp-q8t2
 ##### *Note: API Key was input into a csv file called token.csv in this format:
-![Test](https://github.com/blg-uwm/ChicagoCrime/blob/master/API%20CSV%20Example.PNG)
+![Token](https://github.com/blg-uwm/ChicagoCrime/blob/master/API%20CSV%20Example.PNG)
